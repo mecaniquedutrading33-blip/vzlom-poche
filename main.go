@@ -150,7 +150,7 @@ func main() {
 	http.HandleFunc("/proxy/", func(w http.ResponseWriter, r *http.Request) {
 		// Strip /proxy prefix et forward vers bridge
 		r.Header.Set("X-Forwarded-For", r.RemoteAddr)
-		http.Redirect(w, r, *bridgeURL+r.URL.Path[7:], http.StatusMovedPermanently)
+		http.Redirect(w, r, *bridgeURL+"/"+r.URL.Path[7:], http.StatusMovedPermanently)
 	})
 
 	// Arrêt propre
